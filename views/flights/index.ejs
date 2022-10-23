@@ -8,20 +8,20 @@
       <th>Airport</th>
       <th>Flight Number</th>
       <th>Departs</th>
-      <th>Flights Now</th>
+      <!-- <th>Flights Now</th> -->
     </tr>
   </thead>
   <tbody>
     <!-- Write the line of EJS to iterate over movies using forEach -->
-    <% flights.forEach(function(m) { %>
+    <% flights.forEach(function(f) { %>
       <tr>
         <td><%= f.airline %></td>
         <td><%= f.airport %></td>
         <td><%= f.flightNo %></td>
-        <td><%= f.departs.join(', ') %></td>
+        <td><%= f.departs %></td>
         <!-- finish the ternary expression to display
                       'Yes' or 'Nope' --> 
-        <td><%= m.flightsNow ? 'Yes' : 'No' %></td>
+        <!-- <td><%= f.flightsNow ? 'Yes' : 'No' %></td> -->
       </tr>
     <!-- Close the forEach using EJS here -->
     <% }); %>

@@ -22,11 +22,10 @@ const flightSchema = new Schema({
 
     departs: {
         type: Date,
-        default: function() {
-            return new Date().getFullYear();
-        }
+        default: Date.now()
+        },
     },
-}, {
+{
     timestamps: true
 });
 
