@@ -9,40 +9,54 @@
   <div><%= flight.flightNo %></div>
   <div>Departs: </div>
   <div><%= flight.departs %></div>
+
+  <div>Before adding, please ensure that the Ticket is not in the following list:</div>
+<section id="badge-container">
+  <% tickets.forEach(function(t) { %>
+    <article class="badge"><%= t.seat %></article>
+  <% }) %>
 </section>
-  
+
+<form id="add-ticket-form" action="/flights/<%= flight._id %>/tickets" method="POST">
+  <label>Seat:</label>
+  <input type="text" name="seat">
+  <label>Price:</label>
+  <input type="number" name="price">
+  <input type="submit" value="Add Ticket">
+</form>
+
 <h2>Destination</h2>
 <form id="add-destination-form" method="POST"
-  action="/flights/<%= flight._id %>/destinations">
-  <label>Arrival:</label>
-  <input type="date" name="arrival">
-  <label>Airport:</label>
-  <select name="airport">
-    <option value="AUS">AUS</option>
-    <option value="DEN">DEN</option>
-    <option value="SFO">SFO</option>
-    <option value="LAX">LAX</option>
-  </select>
-  <input type="submit" value="Add Destination">
+action="/flights/<%= flight._id %>/destinations">
+<label>Arrival:</label>
+<input type="date" name="arrival">
+<label>Airport:</label>
+<select name="airport">
+  <option value="AUS">AUS</option>
+  <option value="DEN">DEN</option>
+  <option value="SFO">SFO</option>
+  <option value="LAX">LAX</option>
+</select>
+<input type="submit" value="Add Destination">
 </form>
 
 <% if (flight.destinations.length) { %>
-    <% flight.destinations.forEach(function(f) { %>
-        <table>
-            <thead>
-                <tr>
-                    <th><%= f.arrival %></th>
-                    <th><%= f.airport %></th>       
-                </tr>
-            </thead>
-        </table>
-        <tbody>
-        </tbody>
-        <% }) %>
-        <% } else { %>
-            <h2>No Current Destination</h2>
-            <% } %>
-
-
-
-<%- include('../partials/footer') %>
+  <% flight.destinations.forEach(function(f) { %>
+    <table>
+      <thead>
+        <tr>
+          <th><%= f.arrival %></th>
+          <th><%= f.airport %></th>       
+        </tr>
+      </thead>
+    </table>
+    <tbody>
+    </tbody>
+    <% }) %>
+    <% } else { %>
+      <h2>No Current Destination</h2>
+      <% } %>
+      
+      
+      <%- include('../partials/footer') %>
+      
