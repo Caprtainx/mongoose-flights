@@ -9,21 +9,23 @@
   <div><%= flight.flightNo %></div>
   <div>Departs: </div>
   <div><%= flight.departs %></div>
+  <div>Ticket: </div>
+  <section id="badge-container">
+    <% tickets.forEach(function(t) { %>
+      <article class="badge"><%= t.seat %></article>
+    <% }) %>
+  </section>
+  <div>Price: </div>
+  <section id="badge-container">
+    <% tickets.forEach(function(t) { %>
+      <article class="badge"><%= t.price %></article>
+    <% }) %>
+  </section>
 
-  <div>Before adding, please ensure that the Ticket is not in the following list:</div>
-<section id="badge-container">
-  <% tickets.forEach(function(t) { %>
-    <article class="badge"><%= t.seat %></article>
-  <% }) %>
 </section>
 
-<form id="add-ticket-form" action="/flights/<%= flight._id %>/tickets" method="POST">
-  <label>Seat:</label>
-  <input type="text" name="seat">
-  <label>Price:</label>
-  <input type="number" name="price">
-  <input type="submit" value="Add Ticket">
-</form>
+
+<a href="/flights/<%= flight._id %>/tickets/new">Add Ticket</a>
 
 <h2>Destination</h2>
 <form id="add-destination-form" method="POST"
